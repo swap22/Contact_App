@@ -5,8 +5,11 @@
     function Contact(ContactDataSvc) {
         var self = this;
 
-        self.contact = ContactDataSvc.contacts;
-        
+        ContactDataSvc.getContacts()
+        .then(function(data){
+            self.contact = data;
+        });
+
          this.selectUser = function (index) {
             this.selectedUser = this.contact[index];
         }
