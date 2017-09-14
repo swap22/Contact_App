@@ -11,5 +11,15 @@
             return promise2;
         }
 
+        self.saveUser = function(userData){
+            var url = "http://localhost:3000/contacts/" + userData.id;
+            $http.put(url, userData)
+            .then(
+                function(response){
+                    console.log(response);
+                }
+            )
+        }
+
     });
 })();

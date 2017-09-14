@@ -1,44 +1,67 @@
 <html ng-app="ContactApp">
-    <head>
-        <title> MyContactApp </title>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <script src="app.js"></script>
-        <script src="header_footer.controller.js"></script>
-        <script src="contact.controller.js"></script>
-        <script src="appname.service.js"></script>
-        <script src="appConfig.service.js"></script>
-        <script src="contactdata.service.js"></script>
-    </head>
-    <body>
-        <div ng-controller="HeaderCtrl as hCtrl">
-            <h1> {{hCtrl.appName}}</h1>
-        </div>
 
-        <div class='container' ng-controller="ContactCtrl as ct">
-            <div class="row">
+<head>
+    <title> MyContactApp </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="app.js"></script>
+    <script src="header_footer.controller.js"></script>
+    <script src="contact.controller.js"></script>
+    <script src="appname.service.js"></script>
+    <script src="appConfig.service.js"></script>
+    <script src="contactdata.service.js"></script>
+</head>
+
+<body>
+    <div ng-controller="HeaderCtrl as hCtrl">
+        <h1> {{hCtrl.appName}}</h1>
+    </div>
+
+    <div class='container' ng-controller="ContactCtrl as ct">
+        <div class="row">
+            <div class="col-md-6">
                 <ul class="list-group">
-                        <!-- This code iterate over each element in the array created in controller -->
-                        <li class="list-group-item" ng-repeat="i in ct.contact" ng-click="ct.selectUser($index)">
-                            <span>{{i.name.first + " " + i.name.last}}</span>
-                        </li>
+                    <!-- This code iterate over each element in the array created in controller -->
+                    <li class="list-group-item" ng-repeat="i in ct.contact" ng-click="ct.selectUser($index)">
+                        <span>{{i.name.first + " " + i.name.last}}</span>
+                    </li>
                 </ul>
             </div>
-            <div class="row">
+            <div class="col-md-6">
                 <div class="media">
                     <div class="media-left">
                         <img ng-src="{{ct.selectedUser.picture.medium}}">
                     </div>
                     <div class="media-body">
-                        {{ct.selectedUser.name.title + " " + ct.selectedUser.name.first + " " + ct.selectedUser.name.last}}
+                            <p>
+                                Title:
+                                <span ng-show="!ct.editMode">{{ct.selectedUser.name.title}} </span>
+                                <input type="text" ng-model="ct.selectedUser.name.title" ng-show="ct.editMode"/>
+                            </p>
+                            <p>
+                                First Name:
+                                <span ng-show="!ct.editMode">{{ct.selectedUser.name.first}} </span>
+                                <input type="text" ng-model="ct.selectedUser.name.first"  ng-show="ct.editMode"/>
+                            </p>
+                            <p>
+                                Last Name:
+                                <span ng-show="!ct.editMode">{{ct.selectedUser.name.last}} </span>
+                                <input type="text" ng-model="ct.selectedUser.name.last"  ng-show="ct.editMode"/>
+                            </p>
+                            <button ng-click="ct.toggleEditMode()" ng-show="!ct.editMode">Edit</button>
+                            <button ng-click="ct.saveUser()" ng-show="ct.editMode">Save</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div ng-controller="FooterCtrl as fCtrl">
-            <h1>{{fCtrl.appName}}</h1>
-        </div>
-    </body>
+    <div ng-controller="FooterCtrl as fCtrl">
+        <h1>{{fCtrl.appName}}</h1>
+    </div>
+</body>
+
 </html>
