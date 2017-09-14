@@ -7,7 +7,10 @@
         <script src="app.js"></script>
     </head>
     <body>
-        <h1> Contact App</h1>
+        <div ng-controller="HeaderCtrl as hCtrl">
+            <h1> {{hCtrl.appName}}</h1>
+        </div>
+
         <div class='container' ng-controller="ContactCtrl as ct">
             <div class="row">
                 <ul class="list-group">
@@ -27,6 +30,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div ng-controller="FooterCtrl as fCtrl">
+            <h1>{{fCtrl.appName}}</h1>
         </div>
     </body>
 </html>
