@@ -5,17 +5,15 @@ app.controller("HeaderCtrl", Header);
 app.controller("FooterCtrl", Footer);
 
 //Creting service
-app.value("AppNameSvc", "My Contact App from Value Service");
+app.value("AppNameSvc", "My Contact App from \"Service\" Service");
 
 function appNameFun(AppNameSvc){
-    return {
-        "name":AppNameSvc,
-        "author":"Anuj Sharma",
-        "Company":"SAP Labs"
-    };
+        this.name = AppNameSvc;
+        this.author = "Anuj Sharma";
+        this.company = "SAP Labs";
 }
 
-app.factory("AppNameFactorySvc", appNameFun);
+app.service("AppNameServiceSvc", appNameFun);
 
 function Contact(){
     this.contact = [
@@ -52,10 +50,10 @@ function Contact(){
     }
 }
 
-function Header(AppNameSvc, AppNameFactorySvc){
-    this.appName = AppNameFactorySvc.name;
+function Header(AppNameServiceSvc){
+    this.appName = AppNameServiceSvc.name;
 }
 
-function Footer(AppNameSvc, AppNameFactorySvc){
-    this.appName = AppNameFactorySvc.name;
+function Footer(AppNameServiceSvc){
+    this.appName = AppNameServiceSvc.name;
 }
