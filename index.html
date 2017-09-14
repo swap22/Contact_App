@@ -31,6 +31,8 @@
                 </ul>
             </div>
             <div class="col-md-6">
+                <div class="alert alert-success" ng-if="ct.successMessage">{{ct.successMessage}}</div>
+                <div class="alert alert-danger" ng-if="ct.errorMessage">{{ct.errorMessage}}</div>
                 <div class="media">
                     <div class="media-left">
                         <img ng-src="{{ct.selectedUser.picture.medium}}">

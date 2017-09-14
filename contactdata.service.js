@@ -13,7 +13,7 @@
 
         self.saveUser = function(userData){
             var url = "http://localhost:3000/contacts/" + userData.id;
-            $http.put(url, userData)
+            return $http.put(url, userData)
             .then(
                 function(response){
                     console.log(response);
